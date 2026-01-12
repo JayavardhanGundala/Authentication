@@ -3,10 +3,10 @@ import jwt from "jsonwebtoken";
 
 export const Protect=async (req,res,next)=>{
     let token;
-    if(req.header.authorization &&req.header.authorization.startsWith("Bearer")){
+    if(req.headers.authorization &&req.headers.authorization.startsWith("Bearer ")){
        try{
-         token=req.header.authorization.split(" ")[1]
-        const decode=jwt.verify(token,process.env.Jwt_Token)
+         token=req.headers.authorization.split(" ")[1]
+        const decode=jwt.verify(token,process.env.Jwt_Secreat)
         req.user=await User.findById(decode.id).select("-password")
         return next()
        } 
