@@ -11,6 +11,7 @@ import axios from "axios"
 function App() {
   const [user,setUser]=useState(null)
   const [error,setError]=useState(" ")
+  console.log(user)
 
   useEffect(()=>{
     const fetchUser=async ()=>{
@@ -37,12 +38,14 @@ function App() {
 
   return (
     <>
-    <NavBar/>
+    
     <Router>
+      <NavBar user={user} setUser={setUser}/>
       <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/register" element={<Register/>}/>
+        
+        <Route path="/" element={<Home user={user} error={error}/>}/>
+        <Route path="/login" element={<Login setUser={setUser}/>}/>
+        <Route path="/register" element={<Register setUser={setUser}/>}/>
       </Routes>
     </Router>
 
