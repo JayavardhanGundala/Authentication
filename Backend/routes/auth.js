@@ -22,7 +22,7 @@ router.post('/register',async (req,res)=>{
     }
     catch(err){
         console.error(err)
-        res.status(500).json({message:"server error"})
+        res.status(500).json({message:`server error:${error}`})
 
     }
 })
